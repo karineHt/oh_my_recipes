@@ -1,0 +1,5 @@
+# Directories and file to ignore
+/log
+/tmp
+
+/node_modules
