@@ -22,7 +22,7 @@ class RecipesController < ApplicationController
 
   private
 
-    def search_params
-      params.fetch(:search, {}).permit(:ingredients, :people_quantity, :meal)
-    end
+  def search_params
+    params.fetch(:search, {}).permit(:ingredients, :people_quantity, :meal)
+  end
 end

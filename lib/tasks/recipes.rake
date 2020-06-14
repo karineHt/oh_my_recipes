@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 # Tasks related to recipe model
 namespace :recipes do
   desc 'Import recipes from a json file'
   task import: :environment do
     logger = Logger.new($stdout)
-    logger.info("### Start ###")
+    logger.info('### Start ###')
 
-    file = File.open("db/imports/recipes.json")
+    file = File.open('db/imports/recipes.json')
     file.each_line do |line|
       next if line.blank?
 
@@ -15,10 +17,10 @@ namespace :recipes do
         name: line_data['name'],
         people_quantity: line_data['people_quantity'],
         ingredients: line_data['ingredients'],
-        tags: line_data['tags'],
+        tags: line_data['tags']
       )
     end
 
-    logger.info("### End ###")
+    logger.info('### End ###')
   end
 end

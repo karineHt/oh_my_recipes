@@ -1,0 +1,40 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+
+empanadas:
+  name: Empanadas au fromage
+  tags: ["Entrée"]
+  people_quantity: 12
+  ingredients:
+  - 2tasses de farine de maïs
+  - 1/2tasse de crème aigre
+  - Huile de friture"
+  - 2tasses de fromage râpé (ou mozzarella)
+  - Crème aigre
+
+quiche:
+  name: La quiche aux diots
+  tags:
+  - Végétarien
+  - Plat principal
+  people_quantity: 4
+  ingredients:
+  - crème fraîche entière
+  - 20cl de lait
+  - 3 oeufs
+  - 1noix de beurre
+
+nutella:
+  name: Beignets au Nutella®
+  tags: ["Dessert"]
+  people_quantity: 10
+  ingredients:
+  - 1 oeuf
+  - 50g de beurre mou
+  - 100ml de lait entier
+  - gousse de vanille
+  - 150g de Nutella
