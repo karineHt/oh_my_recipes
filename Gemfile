@@ -27,6 +27,9 @@ gem 'jbuilder', '~> 2.7'
 # Pagination
 gem 'kaminari', '~> 1.2.1'
 
+# Manage french pluralization
+gem 'inflections', '~> 4.1.0'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

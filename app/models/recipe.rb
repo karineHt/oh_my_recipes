@@ -18,7 +18,7 @@ class Recipe < ApplicationRecord
     ingredients
       .split(/[\s|\.,\/\\]/)
       .map do |ing|
-        scope = scope.where('ingredients::TEXT ilike ?', "%#{ing.singularize}%")
+        scope = scope.where('ingredients::TEXT ilike ?', "%#{ing.singularize(:fr)}%")
       end
 
     scope
