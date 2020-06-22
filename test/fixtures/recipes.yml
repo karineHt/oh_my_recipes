@@ -12,7 +12,7 @@ empanadas:
   ingredients:
   - 2tasses de farine de maïs
   - 1/2tasse de crème aigre
-  - Huile de friture"
+  - Huile de friture
   - 2tasses de fromage râpé (ou mozzarella)
   - Crème aigre
 
@@ -27,6 +27,31 @@ quiche:
   - 20cl de lait
   - 3 oeufs
   - 1noix de beurre
+
+cabillaud:
+  name: Bouchées poisson/crevettes aux petits légumes
+  tags:
+  - Crevettes
+  - Plat principal
+  - Fruits de mer
+  people_quantity: 4
+  ingredients:
+  - poisson blanc type cabillaud
+  - 12 crevettes fraîches ou cuites
+  - 2 carottes
+  - 1 courgette
+
+boulette_viande:
+  name: Boulettes à la liégeoise
+  tags:
+  - Plat principal
+  - Viande
+  - Boulettes de viande
+  people_quantity: 4
+  ingredients:
+  - 250g de porc
+  - 250g de boeuf
+  - 2 oignons
 
 nutella:
   name: Beignets au Nutella®

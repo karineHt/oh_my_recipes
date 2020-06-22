@@ -8,15 +8,16 @@ class RecipesController < ApplicationController
       @recipes = @recipes.for_meal(search_params[:meal])
     end
 
+    if search_params[:ingredients].present?
+      @recipes = @recipes.with_matching_ingredients(search_params[:ingredients])
+    end
+
     if search_params[:people_quantity].present?
       @recipes = @recipes.for_people(search_params[:people_quantity])
     end
 
-    if search_params[:ingredients].present?
-      @recipes = Recipe.with_ingredients(@recipes, search_params[:ingredients])
-    end
 
-    @count   = @recipes.count
+    @count   = @recipes.length
     @recipes = @recipes.page(params[:page] || 1)
   end
 

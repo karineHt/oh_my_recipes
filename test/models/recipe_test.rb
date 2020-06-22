@@ -27,11 +27,14 @@ class RecipeTest < ActiveSupport::TestCase
     assert_not_includes recipe_scope, recipes(:quiche)
   end
 
-  test "#with_ingredients" do
-    recipe_scope = Recipe.with_ingredients(Recipe.all, "lait, Oeufs")
+  test "scope with_matching_ingredients" do
+    recipe_scope =
+      Recipe.with_matching_ingredients("lait, boeuf, cabillaud, oignons/ oeufs")
 
     assert_includes recipe_scope, recipes(:quiche)
     assert_includes recipe_scope, recipes(:nutella)
     assert_not_includes recipe_scope, recipes(:empanadas)
+    assert_includes recipe_scope, recipes(:cabillaud)
+    assert_includes recipe_scope, recipes(:boulette_viande)
   end
 end

@@ -14,13 +14,32 @@ class Recipe < ApplicationRecord
   scope :for_meal, ->(meal) { where('tags @> ARRAY[?]', meal) }
   scope :for_people, ->(number) { where('people_quantity >= ?', number) }
 
-  def self.with_ingredients(scope, ingredients)
-    ingredients
-      .split(/[\s|\.,\/\\]/)
-      .map do |ing|
-        scope = scope.where('ingredients::TEXT ilike ?', "%#{ing.singularize(:fr)}%")
-      end
 
-    scope
+  scope :with_matching_ingredients, ->(list) do
+    list_to_use = useable_list(list)
+    # Sub_query catches all records matching built regex.
+    # regexp_matches is a postgresql function returning matching substrings.
+    sub_query = select("
+      id, name, image, ingredients, people_quantity, tags,
+      regexp_matches(ingredients::TEXT, '(#{list_to_use.join('|')})', 'gi') matchings
+    ")
+    .from("recipes")
+    .where('ingredients::TEXT ~* ?', "(#{list_to_use.join('|')})")
+
+    # Main query to order by relevance.
+    select("
+      id, name, image, ingredients, people_quantity, tags,
+      array_length(array_agg(distinct matchings), 1) as matchings_length
+    ")
+    .from(sub_query, :sub_query)
+    .group("id, name, image, ingredients, people_quantity, tags")
+    .order("matchings_length DESC")
+  end
+
+  def self.useable_list(list_of_ingredients)
+    list_of_ingredients
+      .split(/\W/)
+      .map { |ing| ing.presence && ing.singularize(:fr) }
+      .compact
   end
 end
